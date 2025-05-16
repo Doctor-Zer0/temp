@@ -10,27 +10,28 @@ body {
 
 .logo-row {
   display: flex;
-  gap: 4vw;
+  gap: 10px;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
 }
 
 .logo-container {
-  width: 20vw;
-  height: 20vw;
-  max-width: 120px;
-  max-height: 120px;
-  min-width: 60px;
-  min-height: 60px;
+  width: 60px;
+  height: 60px;
   overflow: hidden;
   border-radius: 50%;
-  padding: 0.5vw;
+  background-color: white;
   box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s ease;
 }
 
 .logo-container img {
-  width: 70%;
-  height: 70%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: center;
   border-radius: 50%;
@@ -39,6 +40,6 @@ body {
   display: block;
 }
 
-.logo-container img:hover {
+.logo-container:hover img {
   transform: scale(1.1);
 }
