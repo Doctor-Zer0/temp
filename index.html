@@ -28,8 +28,17 @@
 <div id="box">haha</div>
 
 <script>
-  // You can manipulate the box with JavaScript if needed
-  // For example: document.getElementById("box").textContent = "haha";
+  function updateTime() {
+    const now = new Date();
+    const timeString = now.toLocaleTimeString();
+    document.getElementById("box").textContent = timeString;
+  }
+
+  // Initial call
+  updateTime();
+
+  // Update every second
+  setInterval(updateTime, 1000);
 </script>
 
 </body>
