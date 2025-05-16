@@ -1,48 +1,61 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Haha Box</title>
+  <title>Logo Row</title>
   <style>
-    #box {
-      width: 200px;
-      height: 100px;
-      background-color: white;
-      border: 2px solid black;
+    body {
+      margin: 0;
+      padding: 0;
+      background: transparent;
       display: flex;
-      align-items: center;
       justify-content: center;
-      font-size: 24px;
-      font-family: Arial, sans-serif;
+      align-items: center;
+      height: 100vh;
     }
-    html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: hidden;
-    background: transparent;
-  
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+    .logo-row {
+      display: flex;
+      gap: 20px;
+    }
+
+    .logo-row a img {
+      height: 60px;
+      width: auto;
+      transition: transform 0.2s ease;
+    }
+
+    .logo-row a img:hover {
+      transform: scale(1.1);
     }
   </style>
 </head>
 <body>
 
-<div id="box">haha</div>
+<div class="logo-row" id="logoRow"></div>
 
 <script>
-  function updateTime() {
-    const now = new Date();
-    const timeString = now.toLocaleTimeString();
-    document.getElementById("box").textContent = timeString;
-  }
+  const logos = [
+    { src: 'https://static.vecteezy.com/system/resources/previews/023/741/129/original/tiktok-logo-icon-social-media-icon-free-png.png', url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' },
+    { src: 'https://static.vecteezy.com/system/resources/previews/016/716/458/original/spotify-icon-free-png.png', url: 'https://www.youtube.com/watch?v=_e9yMqmXWo0' },
+    { src: 'https://logosmarcas.net/wp-content/uploads/2020/11/Reddit-Emblema-650x366.png', url: 'https://www.youtube.com/shorts/7oxr4MDFiNg' },
+    { src: 'https://logos-world.net/wp-content/uploads/2020/04/Instagram-icon-Logo-2016-present.png', url: 'https://www.youtube.com/shorts/bQSiD1cJAu8' },
+    { src: 'https://www.freeiconspng.com/uploads/hd-youtube-logo-png-transparent-background-20.png', url: 'https://letmegooglethat.com/?q=furry+porn+gay+men+anal+2024+island+live+remake+petite+minor' }
+  ];
 
-  // Initial call
-  updateTime();
+  const container = document.getElementById('logoRow');
 
-  // Update every second
-  setInterval(updateTime, 1000);
+  logos.forEach(logo => {
+    const link = document.createElement('a');
+    link.href = logo.url;
+    link.target = '_blank';
+    
+    const img = document.createElement('img');
+    img.src = logo.src;
+    img.alt = 'Logo';
+
+    link.appendChild(img);
+    container.appendChild(link);
+  });
 </script>
 
 </body>
