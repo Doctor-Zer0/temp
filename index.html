@@ -18,13 +18,23 @@
       gap: 20px;
     }
 
-    .logo-row a img {
+    .logo-container {
+      width: 60px;
       height: 60px;
-      width: auto;
-      transition: transform 0.2s ease;
+      overflow: hidden;
+      border-radius: 8px;
     }
 
-    .logo-row a img:hover {
+    .logo-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.2s ease;
+      display: block;
+    }
+
+    .logo-container img:hover {
       transform: scale(1.1);
     }
   </style>
@@ -48,12 +58,16 @@
     const link = document.createElement('a');
     link.href = logo.url;
     link.target = '_blank';
-    
+
+    const logoDiv = document.createElement('div');
+    logoDiv.className = 'logo-container';
+
     const img = document.createElement('img');
     img.src = logo.src;
     img.alt = 'Logo';
 
-    link.appendChild(img);
+    logoDiv.appendChild(img);
+    link.appendChild(logoDiv);
     container.appendChild(link);
   });
 </script>
