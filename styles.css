@@ -18,11 +18,13 @@ body {
   height: 120px;
   overflow: hidden;
   border-radius: 8px;
+  padding: 6px;
+  box-sizing: border-box;
 }
 
 .logo-container img {
-  width: 50%;
-  height: 50%;
+  width: 70%;
+  height: 70%;
   object-fit: cover;
   object-position: center;
   transform-origin: center;
