@@ -26,7 +26,7 @@ body {
   object-fit: cover;
   object-position: center;
   transform: scale(0.5);
-  transform-origin: top left;
+  transform-origin: center;
   transition: transform 0.2s ease;
   display: block;
 }
