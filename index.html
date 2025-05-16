@@ -2,77 +2,38 @@
 <html>
 <head>
   <title>Logo Row</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: transparent;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-
-    .logo-row {
-      display: flex;
-      gap: 20px;
-    }
-
-    .logo-container {
-      width: 60px;
-      height: 60px;
-      overflow: hidden;
-      border-radius: 8px;
-    }
-
-    .logo-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transform: scale(0.5);
-      transform-origin: top left;
-      object-position: center;
-      transition: transform 0.2s ease;
-      display: block;
-    }
-    /*
-    .logo-container img:hover {
-      transform: scale(1.1);
-    } */
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div class="logo-row" id="logoRow"></div>
 
-<div class="logo-row" id="logoRow"></div>
+  <script>
+    const logos = [
+      { src: 'https://static.vecteezy.com/system/resources/previews/023/741/129/original/tiktok-logo-icon-social-media-icon-free-png.png', url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' },
+      { src: 'https://static.vecteezy.com/system/resources/previews/016/716/458/original/spotify-icon-free-png.png', url: 'https://www.youtube.com/watch?v=_e9yMqmXWo0' },
+      { src: 'https://logosmarcas.net/wp-content/uploads/2020/11/Reddit-Emblema-650x366.png', url: 'https://www.youtube.com/shorts/7oxr4MDFiNg' },
+      { src: 'https://logos-world.net/wp-content/uploads/2020/04/Instagram-icon-Logo-2016-present.png', url: 'https://www.youtube.com/shorts/bQSiD1cJAu8' },
+      { src: 'https://freepnglogo.com/images/all_img/1701508703YouTube-Icon-PNG.png', url: 'https://letmegooglethat.com/?q=help' }
+    ];
 
-<script>
-  const logos = [
-    { src: 'https://static.vecteezy.com/system/resources/previews/023/741/129/original/tiktok-logo-icon-social-media-icon-free-png.png', url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' },
-    { src: 'https://static.vecteezy.com/system/resources/previews/016/716/458/original/spotify-icon-free-png.png', url: 'https://www.youtube.com/watch?v=_e9yMqmXWo0' },
-    { src: 'https://logosmarcas.net/wp-content/uploads/2020/11/Reddit-Emblema-650x366.png', url: 'https://www.youtube.com/shorts/7oxr4MDFiNg' },
-    { src: 'https://logos-world.net/wp-content/uploads/2020/04/Instagram-icon-Logo-2016-present.png', url: 'https://www.youtube.com/shorts/bQSiD1cJAu8' },
-    { src: 'https://www.freeiconspng.com/uploads/hd-youtube-logo-png-transparent-background-20.png', url: 'https://letmegooglethat.com/?q=furry+porn+gay+men+anal+2024+island+live+remake+petite+minor' }
-  ];
+    const container = document.getElementById('logoRow');
 
-  const container = document.getElementById('logoRow');
+    logos.forEach(logo => {
+      const link = document.createElement('a');
+      link.href = logo.url;
+      link.target = '_blank';
 
-  logos.forEach(logo => {
-    const link = document.createElement('a');
-    link.href = logo.url;
-    link.target = '_blank';
+      const logoDiv = document.createElement('div');
+      logoDiv.className = 'logo-container';
 
-    const logoDiv = document.createElement('div');
-    logoDiv.className = 'logo-container';
+      const img = document.createElement('img');
+      img.src = logo.src;
+      img.alt = 'Logo';
 
-    const img = document.createElement('img');
-    img.src = logo.src;
-    img.alt = 'Logo';
-
-    logoDiv.appendChild(img);
-    link.appendChild(logoDiv);
-    container.appendChild(link);
-  });
-</script>
-
+      logoDiv.appendChild(img);
+      link.appendChild(logoDiv);
+      container.appendChild(link);
+    });
+  </script>
 </body>
 </html>
