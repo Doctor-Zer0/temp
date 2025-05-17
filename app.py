@@ -1,10 +1,12 @@
 from flask import Flask, request, redirect, session, jsonify
+from flask_cors import CORS
 import requests
 import base64
 import os
 
 # ========== Environment Inputs ==========
 app = Flask(__name__)
+CORS(app)
 app.secret_key = os.getenv('FLASK_SECRET_KEY', 'default-fallback-key')
 
 # Spotify app credentials
