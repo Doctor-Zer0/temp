@@ -46,7 +46,7 @@ def callback():
     return redirect(f"http://127.0.0.1:5500/mason's%20FUCKING%20WEBSAITE/spotify%20embed/index.html?token={token_json['refresh_token']}")
 
 # Step 3: get current track
-@app.route('/now-playing')
+@app.route('/now-playing', methods=['POST'])
 def now_playing():
     data = request.get_json()
     refresh_token = data.get('refresh_token')
