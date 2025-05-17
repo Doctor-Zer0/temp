@@ -44,7 +44,7 @@ def callback():
     )
     token_json = token_res.json()
     session['refresh_token'] = token_json['refresh_token']
-    return "Login successful!"
+    return redirect('http://127.0.0.1:5500')
 
 # Step 3: get current track
 @app.route('/now-playing')
