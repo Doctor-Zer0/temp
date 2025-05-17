@@ -5,7 +5,7 @@ import os
 
 # ========== Environment Inputs ==========
 app = Flask(__name__)
-app.secret_key = os.getenv("FLASK_SECRET_KEY", "default-fallback-key")
+app.secret_key = os.getenv('FLASK_SECRET_KEY', 'default-fallback-key')
 
 # Spotify app credentials
 CLIENT_ID = os.environ.get('SPOTIFY_CLIENT_ID')
@@ -18,7 +18,7 @@ REDIRECT_URI = os.environ.get('REDIRECT_URI')
 def login():
     scope = 'user-read-currently-playing'
     return redirect(
-        f"https://accounts.spotify.com/authorize?client_id={CLIENT_ID}&response_type=code&redirect_uri={REDIRECT_URI}&scope={scope}"
+        f'https://accounts.spotify.com/authorize?client_id={CLIENT_ID}&response_type=code&redirect_uri={REDIRECT_URI}&scope={scope}'
     )
 
 # Step 2: callback and refresh token
@@ -74,3 +74,8 @@ def now_playing():
         headers={'Authorization': f'Bearer {access_token}'}
     )
     return jsonify(now_res.json())
+
+# Open host and port
+if __name__ == '__main__':
+    port = int(os.environment.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
