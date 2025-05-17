@@ -48,7 +48,8 @@ def callback():
 # Step 3: get current track
 @app.route('/now-playing')
 def now_playing():
-    refresh_token = session.get('refresh_token')
+    data = request.get_json()
+    refresh_token = data.get('refresh_token')
     if not refresh_token:
         return jsonify({'error': 'Not logged in'}), 401
 
