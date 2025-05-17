@@ -3,15 +3,17 @@ import requests
 import base64
 import os
 
+# ========== Environment Inputs ==========
 app = Flask(__name__)
-app.secret_key = 'something_secret_here'
+app.secret_key = os.getenv("FLASK_SECRET_KEY", "default-fallback-key")
 
 # Spotify app credentials
-CLIENT_ID = 'your_spotify_client_id'
-CLIENT_SECRET = 'your_spotify_client_secret'
-REDIRECT_URI = 'http://localhost:8888/callback'
+CLIENT_ID = os.environ.get('SPOTIFY_CLIENT_ID')
+CLIENT_SECRET = os.environ.get('SPOTIFY_CLIENT_SECRET')
+REDIRECT_URI = os.environ.get('REDIRECT_URI')
 
-# Step 1: Login URL
+# ============== Core System =============
+# Step 1: login url
 @app.route('/login')
 def login():
     scope = 'user-read-currently-playing'
@@ -19,7 +21,7 @@ def login():
         f"https://accounts.spotify.com/authorize?client_id={CLIENT_ID}&response_type=code&redirect_uri={REDIRECT_URI}&scope={scope}"
     )
 
-# Step 2: Handle callback and get refresh token
+# Step 2: callback and refresh token
 @app.route('/callback')
 def callback():
     code = request.args.get('code')
@@ -40,16 +42,16 @@ def callback():
     )
     token_json = token_res.json()
     session['refresh_token'] = token_json['refresh_token']
-    return "Login successful! You can close this window."
+    return "Login successful!"
 
-# Step 3: Get current track
+# Step 3: get current track
 @app.route('/now-playing')
 def now_playing():
     refresh_token = session.get('refresh_token')
     if not refresh_token:
         return jsonify({'error': 'Not logged in'}), 401
 
-    # Get a new access token
+    # New access token
     auth_str = f"{CLIENT_ID}:{CLIENT_SECRET}"
     b64_auth_str = base64.b64encode(auth_str.encode()).decode()
 
@@ -66,7 +68,7 @@ def now_playing():
     )
     access_token = token_res.json().get('access_token')
 
-    # Use the token to fetch now playing
+    # Fetch now playing
     now_res = requests.get(
         'https://api.spotify.com/v1/me/player/currently-playing',
         headers={'Authorization': f'Bearer {access_token}'}
