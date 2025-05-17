@@ -43,7 +43,7 @@ def callback():
         }
     )
     token_json = token_res.json()
-    return redirect(f"http://127.0.0.1:5500/index.html?token={token_json['refresh_token']}")
+    return redirect(f"http://127.0.0.1:5500/mason's%20FUCKING%20WEBSAITE/spotify%20embed/index.html?token={token_json['refresh_token']}")
 
 # Step 3: get current track
 @app.route('/now-playing')
