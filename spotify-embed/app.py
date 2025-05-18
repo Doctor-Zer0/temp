@@ -43,8 +43,7 @@ def callback():
         }
     )
     token_json = token_res.json()
-    print('Spotify token respose:', token_json)  # DEBUG OUTPUT
-    return redirect(f"http://127.0.0.1:5500/mason's%20FUCKING%20WEBSAITE/spotify%20embed/index.html?token={token_json['refresh_token']}")
+    return f"Refresh token: {token_json.get('refresh_token', 'missing')}"
 
 # Step 3: get current track
 @app.route('/now-playing', methods=['POST'])
@@ -69,7 +68,6 @@ def now_playing():
             'Content-Type': 'application/x-www-form-urlencoded'
         }
     )
-    print('token_res:', token_res.json())  # DEBUG OUTPUT
     access_token = token_res.json().get('access_token')
 
     # Fetch now playing
