@@ -41,12 +41,25 @@ async def update_presence():
         member = guild.get_member(TARGET_USER_ID)
         if member:
             presence_data["status"] = member.status.name
-            presence_data["activities"] = [{
-                "name": a.name,
-                "type": a.type.name,
-                "details": getattr(a, "details", None),
-                "state": getattr(a, "state", None)
-            } for a in member.activities]
+            activities_list = []
+            for a in member.activities:
+                activity_data = {
+                    'name': a.name,
+                    'type': a.type.name,
+                    'details': getattr(a, 'details', None),
+                    'state': getattr(a, 'state', None)
+                }
+                # Add emoji info if custom status and has emoji
+                if a.type == discord.ActivityType.custom:
+                    emoji = getattr(a, 'emoji', None)
+                    if emoji:
+                        activity_data['emoji'] = {
+                            'name': emoji.name,
+                            'id': str(emoji.id) if emoji.id else None,
+                            'animated': emoji.animated if emoji.id else False
+                        }
+                activities_list.append(activity_data)
+            presence_data['activities'] = activities_list
             presence_data['user'] = {
                 'id': str(member.id),
                 'avatar': member.avatar.key if member.avatar else None
