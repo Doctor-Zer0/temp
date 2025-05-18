@@ -43,6 +43,7 @@ def callback():
         }
     )
     token_json = token_res.json()
+    print(token_json)
     return redirect(f"http://127.0.0.1:5500/mason's%20FUCKING%20WEBSAITE/spotify%20embed/index.html?token={token_json['refresh_token']}")
 
 # Step 3: get current track
@@ -68,6 +69,7 @@ def now_playing():
             'Content-Type': 'application/x-www-form-urlencoded'
         }
     )
+    print(token_res.json())
     access_token = token_res.json().get('access_token')
 
     # Fetch now playing
