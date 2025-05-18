@@ -48,7 +48,7 @@ async def update_presence():
                 "state": getattr(a, "state", None)
             } for a in member.activities]
             presence_data['user'] = {
-                'id': member.id,
+                'id': str(member.id),
                 'avatar': member.avatar.key if member.avatar else None
             }
             return
