@@ -47,7 +47,8 @@ async def update_presence():
                     'name': a.name,
                     'type': a.type.name,
                     'details': getattr(a, 'details', None),
-                    'state': getattr(a, 'state', None)
+                    'state': getattr(a, 'state', None),
+                    'application_id': str(a.application_id) if getattr(a, 'application_id', None) else None
                 }
                 # Add emoji info if custom status and has emoji
                 if a.type == discord.ActivityType.custom:
