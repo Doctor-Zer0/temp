@@ -22,7 +22,8 @@ client = discord.Client(intents=intents)
 # Dict for latest presence data
 presence_data = {
     "status": "offline",
-    "activities": []
+    "activities": [],
+    'user' : {}
 }
 
 @app.route('/presence')
@@ -46,14 +47,18 @@ async def update_presence():
                 "details": getattr(a, "details", None),
                 "state": getattr(a, "state", None)
             } for a in member.activities]
+            presence_data['user'] = {
+                'id': member.id,
+                'avatar': member.avatar.key if member.avatar else None
+            }
             return
 
-# Run Discord bot in a thread so Flask can run too
+# Run bot in a thread
 def run_discord():
     client.run(BOT_TOKEN)
 
 threading.Thread(target=run_discord).start()
 
-# Flask server (Render will call this)
+# Flask server
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=10000)
