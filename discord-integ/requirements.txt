@@ -1,3 +1,7 @@
 flask
 flask-cors
+<<<<<<< HEAD
 discord.py
+=======
+discord.py
+>>>>>>> 074728313acde40c8c6438bd97f42bed3be3ef84
