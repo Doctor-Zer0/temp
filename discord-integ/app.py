@@ -58,6 +58,13 @@ async def update_presence():
                             'id': str(emoji.id) if emoji.id else None,
                             'animated': emoji.animated if emoji.id else False
                         }
+                if hasattr(a, 'assets') and a.assets:
+                    activity_data['assets'] = {
+                        'large_image': a.assets.large_image,
+                        'large_text': a.assets.large_text,
+                        'small_image': a.assets.small_image,
+                        'small_text': a.assets.small_text
+                    }
                 activities_list.append(activity_data)
             presence_data['activities'] = activities_list
             presence_data['user'] = {
