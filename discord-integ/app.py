@@ -72,7 +72,6 @@ async def update_presence():
                 'id': str(member.id),
                 'avatar': member.avatar.key if member.avatar else None
             }
-            return
 
 # Run bot in a thread
 def run_discord():
