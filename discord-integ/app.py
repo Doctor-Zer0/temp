@@ -59,7 +59,7 @@ async def update_presence():
                             'id': str(emoji.id) if emoji.id else None,
                             'animated': emoji.animated if emoji.id else False
                         }
-                if hasattr(a, 'assets') and a.assets:
+                if hasattr(a, 'assets') and a.assets is not None:
                     activity_data['assets'] = {
                         'large_image': getattr(a.assets, 'large_image', None),
                         'large_text': getattr(a.assets, 'large_text', None),
