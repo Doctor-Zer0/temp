@@ -61,10 +61,10 @@ async def update_presence():
                         }
                 if hasattr(a, 'assets') and a.assets:
                     activity_data['assets'] = {
-                        'large_image': a.assets.large_image,
-                        'large_text': a.assets.large_text,
-                        'small_image': a.assets.small_image,
-                        'small_text': a.assets.small_text
+                        'large_image': getattr(a.assets, 'large_image', None),
+                        'large_text': getattr(a.assets, 'large_text', None),
+                        'small_image': getattr(a.assets, 'small_image', None),
+                        'small_text': getattr(a.assets, 'small_text', None)
                     }
                 activities_list.append(activity_data)
             presence_data['activities'] = activities_list
