@@ -1,10 +1,12 @@
 import os
 import threading
 from flask import Flask, jsonify
+from flask_cors import CORS
 import discord
 from discord.ext import tasks
 
 app = Flask(__name__)
+CORS(app, origins=['http://127.0.0.1:5500', 'https://spotify-backend-zaoy.onrender.com'])
 
 # Load environment variable secrets
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
